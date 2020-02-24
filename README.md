@@ -1,4 +1,5 @@
 # NOEwarn
+```
 Aufruf: noewarn.sh [OPTIONEN]
       -e, --einsatz          zeige Einsatzüberblick in NÖ (default)
       -f, --feuerwehren      zeige eingesetzte Feuerwehren in NÖ
@@ -6,3 +7,4 @@ Aufruf: noewarn.sh [OPTIONEN]
       -h, --help             zeige eine Kurzfassung des Aufrufs
       -v, --version          zeige Programmversion an
 Die Ausgabe kann zusätzlich mit `grep` gefiltert und/oder mit `watch` überwacht werden.
+```
