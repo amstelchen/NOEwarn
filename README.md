@@ -1,4 +1,7 @@
 # NOEwarn
+
+A program to show fire brigade deployments in Lower Austria.
+
 ```
 Aufruf: noewarn.sh [OPTIONEN]
       -e, --einsatz          zeige Einsatzüberblick in NÖ (default)

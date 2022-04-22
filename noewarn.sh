@@ -1,13 +1,22 @@
 #!/bin/bash
 
-version="0.1.1" # wird mit --version auf der console ausgegeben
+version="0.1.2" # wird mit --version auf der console ausgegeben
 GUI=yad
 filter=0
 
+. gettext.sh
+
+TEXTDOMAIN=noewarn
+export TEXTDOMAIN
+#echo $TEXTDOMAIN
+TEXTDOMAINDIR=/usr/share/locale
+export TEXTDOMAINDIR
+#echo $TEXTDOMAINDIR
+
 #Versionsinfo auf der Console ausgeben, dann beenden
 if [[ $1 = "--version" || $1 = "-v" ]]; then
-    echo "$(basename $0) version $version"
-    echo "Copyright 2020 Michael John
+    eval_gettext "$(basename $0) version $version"; echo
+    echo "Copyright 2020, 2022 Michael John
 License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law."
@@ -15,14 +24,14 @@ There is NO WARRANTY, to the extent permitted by law."
 fi
 
 if [[ $1 = "--help" || $1 = "-h" || $1 = "" ]]; then
-    echo "Aufruf: $(basename $0) [OPTIONEN]
-      -e, --einsatz          zeige Einsatzüberblick in NÖ (default)
-      -f, --feuerwehren      zeige eingesetzte Feuerwehren in NÖ
-      -r, --historie         zeige Einsatzrückblick in NÖ
-      -h, --help             zeige eine Kurzfassung des Aufrufs
-      -v, --version          zeige Programmversion an"
+    eval_gettext "Aufruf: $(basename $0) [OPTIONEN]"; echo
+    echo -n "      -e, --einsatz          "; eval_gettext "show an overview of operations in Lower Austria (default)"; echo
+    echo -n "      -f, --feuerwehren      "; eval_gettext "show deployed fire brigades in Lower Austria"; echo
+    echo -n "      -r, --historie         "; eval_gettext "show deployment history in Lower Austria"; echo
+    echo -n "      -h, --help             "; eval_gettext "show a summary of options"; echo
+    echo -n "      -v, --version          "; eval_gettext "display program version"; echo
 #      --file DATEI           diese Benutzerkonfigurationsdatei verwenden
-    echo "Die Ausgabe kann zusätzlich mit \`grep\` gefiltert und/oder mit \`watch\` überwacht werden."
+    eval_gettext "The output can be additionally filtered with \`grep\` and/or monitored with \`watch\`."; echo
     exit
 fi
 
@@ -45,7 +54,7 @@ fi
 
 if [[ $1 = "--file" ]]; then
 	if [[ $2 = "" ]]; then
-		echo "no file given, exiting."
+		eval_gettext "No file given, exiting."; echo
 		exit
 	else
 		file=$2
